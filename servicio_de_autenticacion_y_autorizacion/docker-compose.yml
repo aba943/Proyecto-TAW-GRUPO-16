@@ -1,0 +1,31 @@
+services:
+
+  db:
+    image: postgres:15
+    container_name: postgres_auth
+    environment:
+      POSTGRES_DB: auth
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  app:
+    build: .
+    container_name: servicio_de_autenticacion_y_autorizacion
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/auth
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
+    ports:
+      - "8080:8080"
+    restart: always
+    entrypoint: ["sh", "-c", "sleep 20 && java -jar app.jar"]
+
+volumes:
+  postgres_data:
