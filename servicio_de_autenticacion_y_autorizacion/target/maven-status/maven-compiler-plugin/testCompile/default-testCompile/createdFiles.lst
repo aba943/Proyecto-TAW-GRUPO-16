@@ -1,0 +1,5 @@
+com\servAuth\repository\UsuarioRepositoryIT.class
+com\servAuth\controller\UsuarioControllerTest.class
+com\servAuth\model\UsuarioTest.class
+com\servAuth\service\UsuarioServiceTest.class
+com\servAuth\ServicioDeAutenticacionYAutorizacionApplicationTests.class
